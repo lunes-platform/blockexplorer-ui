@@ -1,7 +1,7 @@
 # **Lunes Block Explorer**
 <p>Lunes Nightly is an exciting Rust-based blockchain project that aims to revolutionize the world of decentralized finance and autonomous governance. As a reference implementation for blockchain application development, Lunes Nightly provides a solid foundation for building innovative and scalable solutions.</p>
 
-# **Node **
+# **Node**
 * Lunes Nightly <a href="https://github.com/lunes-platform/lunes-nightly">here</a>!</p>
 
 # **Running the application**
