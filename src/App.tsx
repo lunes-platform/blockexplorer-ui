@@ -13,6 +13,7 @@ import Account from "./pages/Account"
 import Search from "./pages/Search";
 import Transfer from "./pages/Transfer";
 import { ApiContextProvider } from "./context/ApiContext";
+import Richies from "./pages/Richies";
 
 
 const linkPage = [
@@ -27,6 +28,8 @@ const linkPage = [
   {path: '/account/:id', component: <Account />},
   {path: '/search/:id', component: <Search />},
   {path: '/tx/:id', component: <Transfer />},
+  {path: '/rich', component: <Richies />},
+  
 ]
 
 function App() {

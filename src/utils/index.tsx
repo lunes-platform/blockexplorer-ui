@@ -3,7 +3,7 @@ import { FieldPolicy, InMemoryCache } from "@apollo/client";
 const { decodeAddress, encodeAddress } = require('@polkadot/keyring');
 const { hexToU8a, isHex } = require('@polkadot/util');
 
-export const ENDPOINT = "https://lunes-squid.lunes.io/"
+export const ENDPOINT = process.env.REACT_APP_ENDPOINT || "http://127.0.0.1:8000/"
 
 const fieldPolicy: FieldPolicy = {
   keyArgs: false,
@@ -125,7 +125,22 @@ export const validateAddress = (address: string) => {
     return false;
   }
 }
-
+export const FormatMiles = (value:string) => {
+  let index = 0;
+  let newFormat = "";
+  
+  for (let i = value.length - 1; i >= 0; i--) {
+    index++;
+    const item = value[i];
+    if (index === 4) {
+      newFormat = "." + newFormat;
+      index = 1;
+    }
+    newFormat = item + newFormat;
+  }
+  
+  return newFormat;
+};
 export const decAddress = (address: string) => {
   try {   
     return encodeAddress(address);

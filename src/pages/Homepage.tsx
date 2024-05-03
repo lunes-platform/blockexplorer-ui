@@ -2,10 +2,19 @@ import { Box, Button, Heading, Stack } from "@chakra-ui/react";
 import BlockTable from "../data/BlockTable";
 import EventTable from "../data/EventTable";
 import ExtrinsicTable from "../data/ExtrinsicTable";
+import ChainTable from "../data/ChainTable";
 
 export default function Homepage() {
   return (
     <Box>
+       <Box>
+        <Stack direction={"row"}>
+          <Heading>Estimative Lunes Chain</Heading>
+        </Stack>
+        <ChainTable />
+      </Box>
+      <br /><br />
+
       <Box>
         <Stack direction={"row"}>
           <Heading>Blocks</Heading>

@@ -311,6 +311,10 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/transfers",
   },
   {
+    label: "Rich",
+    href: "/rich",
+  },
+  {
     label: "Charts",
     href: "/charts",
   }
