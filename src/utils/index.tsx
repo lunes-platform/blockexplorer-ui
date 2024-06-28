@@ -7,7 +7,7 @@ export const ENDPOINT = process.env.REACT_APP_ENDPOINT || "http://127.0.0.1:8000
 
 const fieldPolicy: FieldPolicy = {
   keyArgs: false,
-  merge(existing = {nodes: []}, incoming) {
+  merge(existing = { nodes: [] }, incoming) {
     return {
       nodes: [...existing.nodes, ...incoming.nodes],
       totalCount: incoming.totalCount,
@@ -39,9 +39,9 @@ export const PAGINATION_PART_OF_QUERY = `
   totalCount
 `;
 
-export const truncateText = (text:string, l=6) => {
-  if (l && l>0) {
-    return `${text.slice(0, l+2)}...${text.slice(-l)}`
+export const truncateText = (text: string, l = 6) => {
+  if (l && l > 0) {
+    return `${text.slice(0, l + 2)}...${text.slice(-l)}`
   } else {
     return text
   }
@@ -106,11 +106,18 @@ export const AccountLink = (account: string) => {
     </Link>
   )
 }
+export const AccountAssetLink = (account: string) => {
+  return (
+    <Link href={`/accountAssets/${account}`} color="blue.600">
+      {truncateText(account)}
+    </Link>
+  )
+}
 
-export const convertAmountLunes = (value: string) => {
-  if(!value)
-      return 0
-  return Number(value.replaceAll(",", "").toString())/100000000
+export const convertAmountLunes = (value: string, decimal: number = 8) => {
+  if (!value)
+    return 0
+  return Number(value.replaceAll(",", "").toString()) / Math.pow(10, decimal)
 }
 export const validateAddress = (address: string) => {
   try {
@@ -125,10 +132,10 @@ export const validateAddress = (address: string) => {
     return false;
   }
 }
-export const FormatMiles = (value:string) => {
+export const FormatMiles = (value: string) => {
   let index = 0;
   let newFormat = "";
-  
+
   for (let i = value.length - 1; i >= 0; i--) {
     index++;
     const item = value[i];
@@ -138,11 +145,11 @@ export const FormatMiles = (value:string) => {
     }
     newFormat = item + newFormat;
   }
-  
+
   return newFormat;
 };
 export const decAddress = (address: string) => {
-  try {   
+  try {
     return encodeAddress(address);
   } catch (error) {
     return '';

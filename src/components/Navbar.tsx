@@ -32,7 +32,7 @@ const Logo = () => {
         src="/logo.svg"
         alt="Lunes Nigthly"
         h={{ base: "40px", md: "50px", sm: "20px" }}
-      /> 
+      />
     </Link>
   );
 };
@@ -40,12 +40,12 @@ const Logo = () => {
 const handleSearch = (e: KeyboardEvent<HTMLInputElement>) => {
   if (e.key === "Enter") {
     let id = (e.target as HTMLInputElement).value;
-    if(!id) return;
-    if (validateAddress(id) && id.slice(0,2) != "0x") {
+    if (!id) return;
+    if (validateAddress(id) && id.slice(0, 2) != "0x") {
       window.open(`/account/${id}`, "_self")
     } else if (id.indexOf("-") >= 0) {
       window.open(`/extrinsic/${id}`, "_self")
-    } else if (id.slice(0,2) === "0x") {
+    } else if (id.slice(0, 2) === "0x") {
       window.open(`/tx/${id}`, "_self")
     } else if (!isNaN(parseInt(id))) {
       window.open(`/block/${id}`, "_self")
@@ -309,6 +309,10 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Transfers",
     href: "/transfers",
+  },
+  {
+    label: "Assets Transfers",
+    href: "/assetsTransfers",
   },
   {
     label: "Rich",

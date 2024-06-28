@@ -14,22 +14,27 @@ import Search from "./pages/Search";
 import Transfer from "./pages/Transfer";
 import { ApiContextProvider } from "./context/ApiContext";
 import Richies from "./pages/Richies";
+import AssetsTransfers from "./pages/AssetsTransfers";
+import AccountTransferAssets from "./pages/AccountTransferAssets";
 
 
 const linkPage = [
-  {path: '/', component: <Homepage />},
-  {path: '/blocks', component: <Blocks />},
-  {path: '/extrinsics', component: <Extrinsics />},
-  {path: '/events', component: <Events />},
-  {path: '/transfers', component: <Transfers />},
-  {path: '/charts', component: <Charts />},
-  {path: '/block/:id', component: <Block />},
-  {path: '/extrinsic/:id', component: <Extrinsic />},
-  {path: '/account/:id', component: <Account />},
-  {path: '/search/:id', component: <Search />},
-  {path: '/tx/:id', component: <Transfer />},
-  {path: '/rich', component: <Richies />},
-  
+  { path: '/', component: <Homepage /> },
+  { path: '/blocks', component: <Blocks /> },
+  { path: '/extrinsics', component: <Extrinsics /> },
+  { path: '/events', component: <Events /> },
+  { path: '/transfers', component: <Transfers /> },
+  { path: '/charts', component: <Charts /> },
+  { path: '/block/:id', component: <Block /> },
+  { path: '/extrinsic/:id', component: <Extrinsic /> },
+  { path: '/account/:id', component: <Account /> },
+  { path: '/search/:id', component: <Search /> },
+  { path: '/tx/:id', component: <Transfer /> },
+  { path: '/rich', component: <Richies /> },
+  { path: '/assetsTransfers', component: <AssetsTransfers /> },
+  { path: '/accountAssets/:id', component: <AccountTransferAssets /> },
+
+
 ]
 
 function App() {
@@ -39,7 +44,7 @@ function App() {
         <Navbar />
         <br />
         <Switch>
-        {linkPage.map((obj) => {
+          {linkPage.map((obj) => {
             return (
               <Route exact path={obj.path} key={obj.path}>
                 {obj.component}
@@ -47,7 +52,7 @@ function App() {
             );
           })}
         </Switch>
-       
+
       </Router>
     </ApiContextProvider>
   );

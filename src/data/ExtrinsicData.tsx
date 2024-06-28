@@ -1,22 +1,24 @@
 import { gql, useQuery } from "@apollo/client";
 import { Box, Heading } from "@chakra-ui/react";
-import Overview, {Data as OverviewData} from "../components/Overview";
+import Overview, { Data as OverviewData } from "../components/Overview";
 import Tabs from "../components/Tabs"
 import { timeSince } from "../utils";
 import EventTable from "./EventTable";
 import TransferTable from "./TransferTable";
+import TransferAssetsTable from "./TransferAssetsTable";
 
 
-export default function ExtrinsicData({id}: Props) {
-  const filter = {"extrinsicId": {"equalTo": id}}
-  const transferFilter = {"id": {"equalTo": id}}
+export default function ExtrinsicData({ id }: Props) {
+  const filter = { "extrinsicId": { "equalTo": id } }
+  const transferFilter = { "id": { "equalTo": id } }
   const tabsData = [
-    {label: "Transfers", content: <TransferTable moreVariables={{filter: transferFilter}}/>},  
-    {label: "Events", content: <EventTable moreVariables={{filter}} />},
-    
+    { label: "Transfers", content: <TransferTable moreVariables={{ filter: transferFilter }} /> },
+    { label: "Events", content: <EventTable moreVariables={{ filter }} /> },
+    { label: "Transfers Token", content: <TransferAssetsTable moreVariables={{ filter: transferFilter }} /> }
+
   ]
 
-  return(
+  return (
     <Box>
       <Heading>Extrinsic #{id}</Heading>
       <br />
@@ -27,7 +29,7 @@ export default function ExtrinsicData({id}: Props) {
   )
 }
 
-function ExtrinsicOverview({id}: Props) {
+function ExtrinsicOverview({ id }: Props) {
   const query = gql`
     query Extrinsic($extrinsicId: String!) {
       query {
@@ -54,19 +56,19 @@ function ExtrinsicOverview({id}: Props) {
     "extrinsicId": id
   }
 
-  const { loading, error, data } = useQuery(query, {variables: variables});
+  const { loading, error, data } = useQuery(query, { variables: variables });
   let overviewData: OverviewData = []
   if (data) {
     const extrinsic = data.query.extrinsic
     overviewData = [
-      {label: "Timestamp (UTC)", value: extrinsic.block.timestamp},
-      {label: "Block", value: extrinsic.block.id},
-      {label: "Hash", value: extrinsic.hash},
-      {label: "Module", value: extrinsic.section},
-      {label: "Call", value: extrinsic.method},
-      {label: "Sender", value: extrinsic.signerId},
-      {label: "Events", value: extrinsic.events.totalCount},
-      {label: "Age", value: timeSince(extrinsic.block.timestamp)},
+      { label: "Timestamp (UTC)", value: extrinsic.block.timestamp },
+      { label: "Block", value: extrinsic.block.id },
+      { label: "Hash", value: extrinsic.hash },
+      { label: "Module", value: extrinsic.section },
+      { label: "Call", value: extrinsic.method },
+      { label: "Sender", value: extrinsic.signerId },
+      { label: "Events", value: extrinsic.events.totalCount },
+      { label: "Age", value: timeSince(extrinsic.block.timestamp) },
     ]
   }
 
